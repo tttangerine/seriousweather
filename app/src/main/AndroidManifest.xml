@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.seriousweather.android">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
@@ -18,9 +20,9 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="com.google.android.actions"
-            android:resource="@xml/litepal.xml" />
+        <meta-data />
+            //android:name="com.google.android.actions"
+            //android:resource="@xml/litepal.xml" />
     </application>
 
 </manifest>
