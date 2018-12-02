@@ -12,9 +12,7 @@ public class County extends LitePalSupport {
 
     private int cityId;
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
     public void setId(int id) {
         this.id = id;
@@ -43,4 +41,5 @@ public class County extends LitePalSupport {
     public void setCityId(int cityId) {
         this.cityId = cityId;
     }
+
 }

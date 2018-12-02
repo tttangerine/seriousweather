@@ -22,6 +22,7 @@ import com.seriousweather.android.util.HttpUtil;
 import com.seriousweather.android.util.Utility;
 
 import org.litepal.LitePal;
+import org.litepal.crud.LitePalSupport;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -161,7 +162,7 @@ public class ChooseAreaFragment extends Fragment {
     private void queryCities() {
         titleText.setText(selectedProvince.getProvinceName());
         backButton.setVisibility(View.VISIBLE);
-        cityList = LitePal.where("province = ?", String.valueOf(selectedProvince.
+        cityList = LitePal.where("provinceid = ?", String.valueOf(selectedProvince.
                 getId())).find(City.class);
         if (cityList.size() > 0) {
             dataList.clear();
@@ -206,7 +207,7 @@ public class ChooseAreaFragment extends Fragment {
      * 根据传入的地址和类型从服务器上查询省市县数据
      */
     private void queryFromServer(String address, final String type) {
-        showProgressBar();
+        //progressBar.setVisibility(View.VISIBLE);
         HttpUtil.sendOkHttpRequest(address, new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -223,7 +224,7 @@ public class ChooseAreaFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            progressBar.setVisibility(View.GONE);
+                            //progressBar.setVisibility(View.GONE);
                             if ("province".equals(type)) {
                                 queryProvinces();
                             } else if ("city".equals(type)) {
@@ -242,31 +243,12 @@ public class ChooseAreaFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        closeProgressBar();
+                        //progressBar.setVisibility(View.GONE);
                         Toast.makeText(getContext(), "加载失败", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
-    }
-
-    /**
-     * 显示进度对话框
-     */
-    private void showProgressBar() {
-        if (progressBar == null) {
-            progressBar = new ProgressBar(getActivity());
-        }
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    /**
-     * 关闭进度对话框
-     */
-    private void closeProgressBar() {
-        if (progressBar != null) {
-            progressBar.setVisibility(View.GONE);
-        }
     }
 }
 
