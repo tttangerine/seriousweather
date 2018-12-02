@@ -19,10 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data />
-            //android:name="com.google.android.actions"
-            //android:resource="@xml/litepal.xml" />
+        <activity android:name=".WeatherActivity"></activity>
     </application>
 
 </manifest>
