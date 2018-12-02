@@ -1,5 +1,6 @@
 package com.seriousweather.android;
 
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -23,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.annotations.SerializedName;
 import com.seriousweather.android.gson.Forecast;
 import com.seriousweather.android.gson.Weather;
+import com.seriousweather.android.service.AutoUpdateService;
 import com.seriousweather.android.util.HttpUtil;
 import com.seriousweather.android.util.Utility;
 
@@ -238,5 +240,7 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }
